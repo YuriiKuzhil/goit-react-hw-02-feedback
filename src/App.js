@@ -9,15 +9,58 @@ class App extends Component {
     neutral: 0,
     bad: 0,
   };
-  handleIncrement = event => {
-    console.log('Нажатие на кнопку');
-    console.log(event);
+  onLeaveFeedback = event => {
+    let typeFeedback = event.target.dataset.key;
+    switch (typeFeedback) {
+      case 'good':
+        this.setState(prevState => ({
+          good: prevState.good + 1,
+        }));
+        break;
+      case 'neutral':
+        this.setState(prevState => ({
+          neutral: prevState.neutral + 1,
+        }));
+        break;
+      case 'bad':
+        this.setState(prevState => ({
+          bad: prevState.bad + 1,
+        }));
+        break;
+      default:
+        console.error();
+    }
   };
+
+  countTotalFeedback = () => {
+    return Object.values(this.state).reduce((acc, value) => acc + value, 0);
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const goodFeedbacks = this.state.good;
+    const totalFeedbacks = this.countTotalFeedback();
+    return Math.floor((goodFeedbacks / totalFeedbacks) * 100);
+  };
+
   render() {
+    const totalFeedbacks = this.countTotalFeedback();
+    const positiveFeedbacks = this.countPositiveFeedbackPercentage();
+    const { good, neutral, bad } = this.state;
+    const options = Object.keys(this.state);
+
     return (
-      <FeedbackSection>
-        <FeedbackOptions onIncrement={this.handleIncrement} />
-        <Statistics />
+      <FeedbackSection title="Please leave feedback">
+        <FeedbackOptions
+          options={options}
+          onLeaveFeedback={this.onLeaveFeedback}
+        />
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={totalFeedbacks}
+          positivePercentage={positiveFeedbacks}
+        />
       </FeedbackSection>
     );
   }

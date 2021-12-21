@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { Section, Title } from './FeedbackSection.styled';
 
-const FeedbackSection = ({ children }) => {
+const FeedbackSection = ({ title, children }) => {
   return (
     <Section>
-      <Title>Please leave feedback</Title>
+      <Title>{title}</Title>
       {children}
     </Section>
   );

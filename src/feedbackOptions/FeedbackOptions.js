@@ -1,18 +1,24 @@
+import PropTypes from 'prop-types';
 import { ButtonsContainer, Button } from './FeedbackOptions.styled';
-const FeedbackOptions = ({ onIncrement }) => {
+
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <ButtonsContainer>
-      <Button type="button" onClick={onIncrement} datd-key="good">
-        Good
-      </Button>
-      <Button type="button" onClick={onIncrement} datd-key="neutral">
-        Neutral
-      </Button>
-      <Button type="button" onClick={onIncrement} datd-key="bad">
-        Bad
-      </Button>
+      {options.map(option => (
+        <Button
+          type="button"
+          onClick={onLeaveFeedback}
+          key={option}
+          data-key={option}
+        >
+          {option}
+        </Button>
+      ))}
     </ButtonsContainer>
   );
 };
-
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
 export default FeedbackOptions;
