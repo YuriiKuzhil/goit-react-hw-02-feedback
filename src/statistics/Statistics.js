@@ -2,6 +2,7 @@ import {
   StatisticsContainer,
   Title,
   StatisticsList,
+  Item,
 } from './Statistics.styled';
 
 const Statistics = () => {
@@ -9,9 +10,9 @@ const Statistics = () => {
     <StatisticsContainer>
       <Title>Statistics</Title>
       <StatisticsList>
-        <li>Good</li>
-        <li>Neutral</li>
-        <li>Bad</li>
+        <Item>Good</Item>
+        <Item>Neutral</Item>
+        <Item>Bad</Item>
       </StatisticsList>
     </StatisticsContainer>
   );
