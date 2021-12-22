@@ -13,11 +13,11 @@ const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
       <Title>Statistics</Title>
       {total ? (
         <StatisticsList>
-          <Item>Good:{good}</Item>
-          <Item>Neutral:{neutral}</Item>
-          <Item>Bad:{bad}</Item>
-          <Item>Total:{total}</Item>
-          <Item>Positive feedback:{positivePercentage}%</Item>
+          <Item>Good: {good}</Item>
+          <Item>Neutral: {neutral}</Item>
+          <Item>Bad: {bad}</Item>
+          <Item>Total: {total}</Item>
+          <Item>Positive feedback: {positivePercentage}%</Item>
         </StatisticsList>
       ) : (
         <Notification message="There is no feedback" />
