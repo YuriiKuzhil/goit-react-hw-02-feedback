@@ -9,27 +9,11 @@ class App extends Component {
     neutral: 0,
     bad: 0,
   };
-  onLeaveFeedback = event => {
-    let typeFeedback = event.target.dataset.key;
-    switch (typeFeedback) {
-      case 'good':
-        this.setState(prevState => ({
-          good: prevState.good + 1,
-        }));
-        break;
-      case 'neutral':
-        this.setState(prevState => ({
-          neutral: prevState.neutral + 1,
-        }));
-        break;
-      case 'bad':
-        this.setState(prevState => ({
-          bad: prevState.bad + 1,
-        }));
-        break;
-      default:
-        console.error();
-    }
+  onLeaveFeedback = option => {
+    console.log(option);
+    this.setState(prevState => ({
+      [option]: prevState[option] + 1,
+    }));
   };
 
   countTotalFeedback = () => {
